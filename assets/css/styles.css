@@ -1,0 +1,483 @@
+:root {
+    --helldiver-yellow: rgba(254,236,24,1.00);
+    --super-earth-blue: rgba(198, 226, 238, 1);
+    --galaxy-war-gray: #d8d8d8;
+    --terminid-orange: rgba(255, 202, 0, 1);
+    --automaton-red: rgba(255, 116, 116, 1);
+    --transp: rgba(0,0,0,0);
+}
+
+@font-face {
+    font-family: "FS Sinclair Bold Italic";
+    src: url('../fonts/FS\ Sinclair\ Bold\ Italic.otf');
+}
+@font-face {
+    font-family: "FS Sinclair Bold";
+    src: url('../fonts/FS\ Sinclair\ Bold.otf');
+}
+@font-face {
+    font-family: "FS Sinclair Italic";
+    src: url('../fonts/FS\ Sinclair\ Italic.otf.otf');
+}
+@font-face {
+    font-family: "FS Sinclair Light Italic";
+    src: url('../fonts/FS\ Sinclair\ Light\ Italic.otf');
+}
+@font-face {
+    font-family: "FS Sinclair Medium Italic";
+    src: url('../fonts/FS\ Sinclair\ Medium\ Italic.otf');
+}
+@font-face {
+    font-family: "FS Sinclair Medium";
+    src: url('../fonts/FS\ Sinclair\ Medium.otf');
+}
+@font-face {
+    font-family: "FS Sinclair Regular";
+    src: url('../fonts/FS\ Sinclair\ Regular.otf');
+}
+@font-face {
+    font-family: "FS Sinclair Extended Bold";
+    src: url('../fonts/FS\ Sinclair\ Extended\ Bold.otf');
+}
+@font-face {
+    font-family: "Swiss 721 Extended Bold";
+    src: url('../fonts/Swiss\ 721\ Extended\ Bold.otf');
+}
+
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    cursor: url('../images/cursor.svg') 25 25, auto;
+}
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    overflow: hidden;
+    background-color: rgba(11, 11, 11, 1);
+}
+.no-select {
+    -webkit-touch-callout: none; /* iOS Safari */
+      -webkit-user-select: none; /* Safari */
+       -khtml-user-select: none; /* Konqueror HTML */
+         -moz-user-select: none; /* Old versions of Firefox */
+          -ms-user-select: none; /* Internet Explorer/Edge */
+              user-select: none; /* Non-prefixed version, currently supported by Chrome, Edge, Opera and Firefox */
+}
+
+
+/* #####################
+    Floor Layers
+    (z-index 1-99)
+##################### */
+#steam-1 {
+    z-index: 1;
+    animation: scrollUp 30s linear infinite;
+    opacity: 0.4;
+    background: url('../images/steam1.png') center center repeat-y;
+}
+
+#steam-2 {
+    z-index: 2;
+    animation: scrollUp 50s linear infinite;
+    background: url('../images/steam2.png') center center repeat-y;
+    opacity: 1;
+}
+@keyframes scrollUp {
+    0% { transform: translateY(0); }
+    100% { transform: translateY(-100%); }
+}
+
+#floor {
+    z-index: 3;
+    background: url('../images/floor.png') no-repeat center center;
+}
+
+#ring-light-glow {
+    z-index: 4;
+    background: url('../images/ring-light-glow.png') no-repeat center center;
+}
+
+/* #####################
+    Table Frame Layers
+    (z-index 100-199)
+##################### */
+
+#map-table-frame {
+    z-index: 100;
+    background: url('../images/map-table-frame.png') no-repeat center center;
+}
+
+/* #####################
+    Map Layers
+    (z-index 200-299)
+##################### */
+#map-layers {
+    z-index: 200;
+}
+
+#map-mask circle{
+    z-index: 201;
+}
+.waypoint-svg {
+    stroke-width: 6;
+    stroke-dasharray: 12;
+    stroke-opacity: 0.3;
+    stroke-linejoin: round;
+    stroke-linecap: round;
+    animation: dash 20s linear infinite;
+}
+@keyframes dash {
+    from { stroke-dashoffset: 5; }
+    to { stroke-dashoffset: 1000; }
+}
+
+#nebula-bg {
+    z-index: 202;
+    background: url('../images/nebula-bg.png') no-repeat center center;
+}
+
+#hex-grid {
+    z-index: 203;
+    background: url('../images/hex-grid.png') no-repeat center center;
+}
+
+#particles {
+    z-index: 299; /* Always just beneath UI layer */
+}
+
+#sectors-svg{
+    z-index: 301;
+    pointer-events: all;
+}
+.sector-svg {
+    pointer-events: all;
+}
+.planet-text {
+    font-family: "FS Sinclair Regular";
+}
+
+/* #####################
+    UI Layers
+    (z-index 300-399)
+##################### */
+
+#vignette {
+    background: url('../images/vignette.png') no-repeat center center;
+    z-index: 300; /* Bottom level of ui layers */
+}
+
+/* ### Galactic War Title ### */
+#title-container {
+    z-index: 301;
+    position: fixed;
+    top: 1%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100%;
+    text-align: center;
+    pointer-events: none;
+}
+#galaxy-title {
+    font-family: "Swiss 721 Extended Bold";
+    font-size: 2.5em;
+    color: rgba(255, 255, 255, 0.8);
+    text-transform: uppercase;
+    /* text-shadow: 0 0 10px rgba(255, 255, 255, 0.8); */
+    pointer-events: none;
+}
+.title-wing {
+    margin-left: 1em;
+    margin-right: 1em;
+    margin-top: -1em;
+    width: 12.5% ;
+    height: 5%;
+}
+
+
+/* ### BIG NUMBER STATS ### */
+#big-number-stats {
+    z-index: 303;
+    position: fixed;
+    top: 16%;
+    left: 2.5%;
+    width: 50%;
+    width: 100%;
+    height: auto;
+    pointer-events: none;
+}
+.stat-label{
+    font-family:            "FS Sinclair Regular";
+    font-size:              1.3em;
+    color:                  rgba(191, 191, 191, 1);
+    margin-bottom:          -0.5em;
+}
+.stat-number{
+    font-family:            "FS Sinclair Medium";
+    font-size:              1.3em;
+    color:                  white;
+    margin-bottom:          0.8em;
+}
+
+#label-enemies-killed,
+#number-enemies-killed,
+#label-helldivers-kia,
+#number-helldivers-kia,
+#label-bullets-fired,
+#number-bullets-fired {
+    display: none;
+}
+
+
+/* ### HOVER TOOLTIPS ### */
+.hover-tooltip {
+    position:               absolute;
+    z-index:                303;
+    background-color:       rgba(0,0,0,0.8);
+    border:                 2px solid var(--helldiver-yellow);
+    padding:                2px;
+}
+.hover-tooltip-split {
+    border:                 2px solid rgba(128, 128, 128, 0.8);
+    margin:                 2px;
+    padding:                6px 2px 6px 2px;
+    border-radius:          2px;
+}
+.hover-tooltip-section {
+    margin:                 -2px 2px -2px 2px;
+    border:                 2px solid rgba(255, 255, 255, 0.8);
+    padding:                2px 0px 5px 0px;
+    border-radius:          2px;
+}
+.hover-tooltip-owner-container {
+    display:                flex;
+    flex-direction:         row;
+    margin:                 2px;
+}
+.hover-tooltip-owner-icon {
+    padding-left:           2%;
+    width:                  3em;
+    height:                 2.5em;
+    margin:                 2px;
+    object-fit:             contain;
+}
+.hover-tooltip-owner-name {
+    font-family:            "FS Sinclair Regular";
+    font-size:              2em;
+    padding-left:           2%;
+    border-radius:          2px 2px 0px 0px;
+}
+.hover-tooltip-helldivers {
+    height:                 1.25em;
+    padding:                2vh;
+    width:                  auto;
+    display:                flex;
+    flex-direction:         row;
+    justify-content:        center;
+    align-items:            center;
+}
+.hover-tooltip-helldivers-icon {
+    width:                  2em;
+    height:                 2em;
+    margin:                 2px;
+    object-fit:             contain;
+}
+.hover-tooltip-helldivers-number {
+    font-family:            "FS Sinclair Regular";
+    font-size:              2em;
+    color:                  var(--helldiver-yellow);
+    padding-left:           2%;
+    margin-top:             0.25em;
+    border-radius:          0px 0px 2px 2px;
+}
+/* ##### SECTOR HOVER TOOLTIP ##### */
+#sector-tooltip{
+    width:                  400px;
+}
+#sector-tooltip-guage{
+    height:                 2.8em;
+}
+#sector-tooltip-inner-guage{
+    border:                 2px solid white; /* changes depending on ownership */
+    margin:                 2px;
+    height:                 2em;
+    padding:                4px;
+}
+#sector-tooltip-liberated{
+    background-color:       var(--super-earth-blue);
+    height:                 100%;
+    width:                  50%;
+    margin-right:           2px;
+}
+#sector-tooltip-unliberated{
+    background-color:       var(--super-earth-blue);
+    position:               relative;
+    height:                 100%;
+    width:                  50%;
+    left:                   50%;
+    top:                    -100%;
+    margin-left:            2px;
+}
+#sector-tooltip-percent{
+    font-family:            "FS Sinclair Regular";
+    font-size:              1.3em;
+    text-align:             center;
+    height:                 1.5em;
+    border-radius:          0px 0px 2px 2px;
+}
+/* ##### PLANET HOVER TOOLTIP ##### */
+#planet-tooltip {
+    width:                  25vw;
+}
+#planet-tooltip-banner-container {
+    margin-bottom:         -3.0vw; /* -(env icon w || h) + 0.7 */
+    overflow:               hidden;
+}
+.planet-tooltip-banner {
+    width:                  100%;
+    object-fit:             cover;
+}
+#planet-env-icon-container {
+    display:                flex;
+    flex-direction:         row;
+    margin:                 2px;
+    justify-content:        center;
+    align-items:            center;
+}
+.planet-tooltip-env-icon {
+    background-color:       var(--galaxy-war-gray);
+    width:                  2.3vw;
+    height:                 2.3vw;
+    margin:                 2px;
+    border-radius:          100%;
+    object-fit:             contain;
+}
+#planet-tooltip-dummy-icon {
+    background-color:       var(--transp);
+}
+
+
+
+/* ### TOP-LEFT SECTOR INFO ### */
+#sector-owner-icon-container{
+    z-index: 305;
+    position: fixed;
+    top: 3%;
+    left: 3%;
+    width: 6%;
+    width: 100%;
+    height: auto;
+    pointer-events: none;
+}
+#sector-owner-icon-container img {
+    top: 3%;
+    left: 3%;
+    width: 3%;
+    height: auto;
+}
+#sector-info-guage{
+    margin-bottom:          3px;
+    margin-top:             -0.5em;
+    width:                  35%;
+    height:                 0.9em;
+    padding:                4px;
+}
+#sector-info-liberated{
+    background-color: var(--super-earth-blue);
+    height: 100%;
+    width: 50%;
+    margin-left: -2px;
+    margin-right: 2px;
+}
+#sector-info-unliberated{
+    background-color: var(--super-earth-blue);
+    position: relative;
+    height: 100%;
+    width: 50%;
+    left: 50%;
+    top: -100%;
+    margin-left: 2px;
+}
+#sector-info-wrapper {
+    z-index: 305;
+    position: fixed; 
+    top: 3%;
+    left: 6%;
+    width: 45%;
+    height: 100vh; /* Full height of viewport */
+    padding: 10px;
+    pointer-events: none;
+}
+#sector-info-name {
+    font-family: "Swiss 721 Extended Bold";
+    font-size: 1.75em;
+    font-weight: bold;
+    margin: -0.4em 0 -0.4em 0;
+}
+#sector-info-owner {
+    font-family: "FS Sinclair Medium";
+    text-transform: uppercase;
+    font-size: 1.2em;
+    margin: -0.4em 0 -0.4em 0;
+    /* font-feature-settings: "smcp", "zero"; */
+}
+#sector-info-percent {
+    font-family: "FS Sinclair Medium";
+    text-transform: uppercase;
+    font-size: 1.2em;
+    color: rgba(255,255,255,0.8)
+}
+
+
+/* #####################
+    Alert/Notification Layers
+    (z-index 400-499)
+##################### */
+
+#sliders-container {
+    z-index: 998;
+}
+
+#spinner-container {
+    z-index: 9998;
+    position: fixed; 
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: black;
+    pointer-events: none;
+}
+#spinner {
+    z-index: 9999;
+    position: fixed; 
+    /*top is equal to 1/2 the vh - 1/2 the size of the image (100) */
+    top: calc(50vh - 50px);
+    left: calc(50vw - 50px);
+    height: 100px; /* height of a single frame */
+    width: 100px; /* width of a single frame */
+    background: url("../images/spinner-spritesheet.png");
+    animation: spinnerSprite 2s steps(59) infinite; /* 59 frames */
+}
+@keyframes spinnerSprite {
+    to { background-position: -5900px; } /* 59 frames * 100px */
+}
+
+
+
+/* .nuke-sprite {
+    z-index: 999;
+    height: 100px;
+    width: 100px;
+    background: url('../images/nukeSpritesheet.png');
+    animation: nukeSprite 1s steps(54) infinite;
+}
+
+@keyframes nukeSprite {
+    from { background-position: 5400px; }
+    to { background-position: 0px; }
+} */
+
