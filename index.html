@@ -482,25 +482,33 @@
     </script>
   </body>
 
-<path id="planet-1" class="planet" d="..." data-url="planet1.html"></path>
-<path id="planet-2" class="planet" d="..." data-url="planet2.html"></path>
-<path id="planet-3" class="planet" d="..." data-url="planet3.html"></path>
-<!-- Add data-url for all planets -->
-
+<svg id="sectors-svg">
+  <path id="planet-1" class="planet" d="..." data-url="planet1.html"></path>
+  <path id="planet-2" class="planet" d="..." data-url="planet2.html"></path>
+  <path id="planet-3" class="planet" d="..." data-url="planet3.html"></path>
+</svg>
 <script>
   document.addEventListener("DOMContentLoaded", () => {
-    // Select all planets
-    const planets = document.querySelectorAll(".planet");
+    // Ensure the script runs only after the DOM is loaded
+    const planets = document.querySelectorAll(".planet"); // Select all planet elements
 
-    // Attach double-click event listeners
+    // Add a double-click event listener to each planet
     planets.forEach(planet => {
-      planet.addEventListener("dblclick", (event) => {
-        const url = planet.getAttribute("data-url"); // Get the URL from the data-url attribute
+      planet.addEventListener("dblclick", () => {
+        const url = planet.getAttribute("data-url"); // Get the URL
         if (url) {
-          window.location.href = url; // Redirect to the specified URL
+          window.open(url, "_blank"); // Open the URL in a new tab
+        } else {
+          console.error("No URL defined for this planet.");
         }
       });
     });
+  });
+</script>
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const planets = document.querySelectorAll(".planet");
+    console.log(planets); // This should log all the planet elements
   });
 </script>
 </html>
