@@ -486,4 +486,21 @@
 <path id="planet-2" class="planet" d="..." data-url="planet2.html"></path>
 <path id="planet-3" class="planet" d="..." data-url="planet3.html"></path>
 <!-- Add data-url for all planets -->
+
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    // Select all planets
+    const planets = document.querySelectorAll(".planet");
+
+    // Attach double-click event listeners
+    planets.forEach(planet => {
+      planet.addEventListener("dblclick", (event) => {
+        const url = planet.getAttribute("data-url"); // Get the URL from the data-url attribute
+        if (url) {
+          window.location.href = url; // Redirect to the specified URL
+        }
+      });
+    });
+  });
+</script>
 </html>
